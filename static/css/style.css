@@ -95,9 +95,10 @@ Post
     font-size: 20px;
   }
 }
-.tweet {
+.tweet button {
   border-radius: 10px;
-  color: rgb(27, 121, 214);
+  background-color: dodgerblue;
+  border: hidden;
 }
 button {
   padding: 14px 29px;
