@@ -12,6 +12,5 @@ This is my Twitter Clone Project Based on Django Forum Apps
 * DJANGO 
 * CLOUDINARY
 
- 
  ## How to use ?
   Use this to build your own Twitter Clone
