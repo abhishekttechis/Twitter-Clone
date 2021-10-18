@@ -1,0 +1,66 @@
+{% extends "base.html"%} {% block content %} {% load static %}
+<section class="content">
+  <div class="main-header">
+    <img src="{% static 'img/twitter.png' %}" class="logo"/>
+    <h1>HOME</h1>
+  </div>
+  <section class="tweet_form">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <input type="text" name="name" placeholder="Name" />
+      <textarea name="body" placeholder="Lets's Tweet Something"></textarea>
+      <div class="tweet">
+        <button type="submit" value="Tweet">Tweet</button>
+      </div>
+      <div class="my-icon">
+        <input type="file" name="image" />
+      </div>
+    </form>
+  </section>
+  <section class="tweets">
+    <ul>
+      {% for tweet in tweets %}
+      <li>
+        <img class="menu_icon js-menu-icon" src="{% static 'img/menu.png' %}" />
+        <div class="menu">
+          <a href="/delete/{{ tweet.id }}">Delete</a><br />
+          <a href="/edit/{{ tweet.id }}">Edit</a>
+        </div>
+        <div class="logo">
+          <img src="{% static 'img/user.png' %}" />
+        </div>
+        <div class="name_body">
+          <div class="name">{{ tweet.name }}</div>
+          <div class="datetime">{{ tweet.created_at }}</div>
+        </br>
+          <p>{{ tweet.body }}<br></p>
+      
+          
+          <img class="tweet-border" src="{{ tweet.image.url }}"></br>
+                  
+                  <form id="likes-form" action="{% url 'like_tweet' tweet.pk %}" method='POST'>
+                          {% csrf_token %}
+                      <button class="like-button" type="submit", name="tweet_id", value="{{ tweet.id }}" href="tweet_id">
+                        &#10084;
+                      </button>
+                      {{tweet.likes}}
+                  </form>
+          
+          
+          
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    
+  </section>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'js/tweets.js' %}"></script>
+</section>
+
+{% endblock %}
